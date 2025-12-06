@@ -23,77 +23,83 @@
 **Objetivo**: Criar a infraestrutura básica da API para suportar o frontend
 
 #### 1.1 Configuração do Banco de Dados
-- [ ] **Criar arquivo de configuração do Sequelize**
+- [X] **Criar arquivo de configuração do Sequelize**
   - Arquivo: `backend/src/config/database.js`
   - Configurar conexão PostgreSQL
   - Suporte a variáveis de ambiente (.env)
   
-- [ ] **Criar arquivo .env de exemplo**
+- [X] **Criar arquivo .env de exemplo**
   - Arquivo: `backend/.env.example`
   - Variáveis: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, JWT_SECRET, PORT
 
 - [ ] **Scripts de migração do banco**
   - Criar estrutura de tabelas básicas
-  - Ativar extensão PostGIS no PostgreSQL
+  [X] Ativar extensão PostGIS no PostgreSQL
 
 #### 1.2 Modelos de Dados (Sequelize)
-- [ ] **Model User** (`backend/src/models/User.js`)
+- [X] **Model User** (`backend/src/models/User.js`)
   - Campos: id, name, email, password (hash), phone, role (owner/renter), createdAt, updatedAt
   - Métodos: hashPassword, comparePassword
   
-- [ ] **Model Product** (`backend/src/models/Product.js`)
+- [X] **Model Product** (`backend/src/models/Product.js`)
   - Campos: id, userId, title, description, category, price, condition, location (PostGIS Point), address, cep, images, availability, createdAt, updatedAt
   - Relacionamento: belongsTo User
   
-- [ ] **Model Reservation** (`backend/src/models/Reservation.js`)
+- [X] **Model Reservation** (`backend/src/models/Reservation.js`)
   - Campos: id, productId, userId, startDate, endDate, totalPrice, status, createdAt, updatedAt
   - Relacionamentos: belongsTo Product, belongsTo User
   
-- [ ] **Model Review** (`backend/src/models/Review.js`)
+- [X] **Model Review** (`backend/src/models/Review.js`)
   - Campos: id, productId, userId, reservationId, rating, comment, createdAt, updatedAt
   - Relacionamentos: belongsTo Product, belongsTo User, belongsTo Reservation
 
 #### 1.3 Rotas e Controllers Base
-- [ ] **Rotas de Autenticação** (`backend/src/routes/auth.routes.js`)
+- [X] **Rotas de Autenticação** (`backend/src/routes/auth.routes.js`)
   - POST `/api/auth/register` - Cadastro
   - POST `/api/auth/login` - Login
   - GET `/api/auth/me` - Dados do usuário logado
   
-- [ ] **Rotas de Produtos** (`backend/src/routes/product.routes.js`)
+- [X] **Rotas de Produtos** (`backend/src/routes/product.routes.js`)
   - GET `/api/products` - Listar produtos (com filtros de geolocalização)
   - GET `/api/products/:id` - Detalhes do produto
   - POST `/api/products` - Criar produto (autenticado)
   - PUT `/api/products/:id` - Atualizar produto (autenticado)
   - DELETE `/api/products/:id` - Deletar produto (autenticado)
   
-- [ ] **Rotas de Reservas** (`backend/src/routes/reservation.routes.js`)
+- [X] **Rotas de Reservas** (`backend/src/routes/reservation.routes.js`)
   - POST `/api/reservations` - Criar reserva (autenticado)
   - GET `/api/reservations` - Listar reservas do usuário (autenticado)
   - GET `/api/reservations/:id` - Detalhes da reserva
   - PUT `/api/reservations/:id/status` - Atualizar status da reserva
 
 #### 1.4 Middleware de Autenticação
-- [ ] **JWT Middleware** (`backend/src/middleware/auth.middleware.js`)
+- [X] **JWT Middleware** (`backend/src/middleware/auth.middleware.js`)
   - Validar token JWT
   - Extrair dados do usuário do token
   - Proteger rotas que requerem autenticação
+  - Middleware opcional para rotas públicas com autenticação opcional
+  - Middleware de verificação de roles (requireRole)
 
 #### 1.5 Serviços
-- [ ] **AuthService** (`backend/src/services/auth.service.js`)
+- [X] **AuthService** (`backend/src/services/auth.service.js`)
   - Lógica de registro e login
   - Geração de tokens JWT
+  - Busca de usuário autenticado
   
-- [ ] **ProductService** (`backend/src/services/product.service.js`)
+- [X] **ProductService** (`backend/src/services/product.service.js`)
   - Busca por geolocalização (PostGIS)
   - Filtros e ordenação
   - Cálculo de distância
+  - CRUD completo de produtos
+  - Cálculo de rating médio
   
-- [ ] **ReservationService** (`backend/src/services/reservation.service.js`)
+- [X] **ReservationService** (`backend/src/services/reservation.service.js`)
   - Validação de disponibilidade
   - Cálculo de preços
   - Gestão de status
+  - Listagem de reservas (como locatário ou proprietário)
 
-**Tempo Estimado**: 2-3 dias
+**Tempo Estimado**:
 **Dependências**: PostgreSQL instalado e configurado
 
 ---
@@ -102,11 +108,12 @@
 **Objetivo**: Conectar o React ao backend e implementar fluxos básicos
 
 #### 2.1 Configuração do Axios
-- [ ] **API Client** (`frontend/src/services/api.js`)
+- [X] **API Client** (`frontend/src/services/api.js`)
   - Configuração base do Axios
   - Interceptors para adicionar token JWT
   - Tratamento de erros global
   - Base URL configurável (dev/prod)
+  - Funções auxiliares para gerenciamento de token e autenticação
 
 #### 2.2 Serviços Frontend
 - [ ] **AuthService** (`frontend/src/services/auth.service.js`)
