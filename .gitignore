@@ -43,3 +43,6 @@ Thumbs.db
 
 
 Praxeo.tech/docs
+
+# Arquivos de Configuração
+*.env*
