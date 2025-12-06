@@ -1,0 +1,199 @@
+.LoginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.LoginForm-header {
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.LoginForm-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-xs);
+}
+
+.LoginForm-subtitle {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+}
+
+.LoginForm-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: #FEE;
+  border: 1px solid var(--error);
+  border-radius: var(--border-radius-md);
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.LoginForm-error svg {
+  flex-shrink: 0;
+}
+
+.LoginForm-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.LoginForm-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.LoginForm-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  color: var(--gray-900);
+  background-color: var(--white);
+  transition: all var(--transition-base);
+}
+
+.LoginForm-input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.LoginForm-input::placeholder {
+  color: var(--gray-400);
+}
+
+.LoginForm-input-error {
+  border-color: var(--error);
+}
+
+.LoginForm-input-error:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.LoginForm-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.LoginForm-password-wrapper .LoginForm-input {
+  padding-right: 48px;
+}
+
+.LoginForm-password-toggle {
+  position: absolute;
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  color: var(--gray-500);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-base);
+}
+
+.LoginForm-password-toggle:hover {
+  color: var(--gray-700);
+  background-color: var(--gray-100);
+}
+
+.LoginForm-password-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-green);
+}
+
+.LoginForm-field-error {
+  font-size: 0.85rem;
+  color: var(--error);
+  margin-top: var(--spacing-xs);
+}
+
+.LoginForm-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(var(--spacing-sm) * -1);
+}
+
+.LoginForm-link {
+  background: none;
+  border: none;
+  color: var(--primary-green);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-base);
+  padding: 0;
+}
+
+.LoginForm-link:hover {
+  color: var(--primary-green-dark);
+  text-decoration: underline;
+}
+
+.LoginForm-submit {
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-sm);
+}
+
+.LoginForm-submit:hover:not(:disabled) {
+  background-color: var(--primary-green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.LoginForm-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.LoginForm-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.LoginForm-switch {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.LoginForm-link-primary {
+  margin-left: var(--spacing-xs);
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .LoginForm-title {
+    font-size: 1.5rem;
+  }
+
+  .LoginForm-subtitle {
+    font-size: 0.85rem;
+  }
+}
+

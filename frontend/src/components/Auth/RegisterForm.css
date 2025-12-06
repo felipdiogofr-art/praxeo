@@ -1,0 +1,284 @@
+.RegisterForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.RegisterForm-header {
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.RegisterForm-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-xs);
+}
+
+.RegisterForm-subtitle {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+}
+
+.RegisterForm-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: #FEE;
+  border: 1px solid var(--error);
+  border-radius: var(--border-radius-md);
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.RegisterForm-error svg {
+  flex-shrink: 0;
+}
+
+.RegisterForm-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.RegisterForm-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.RegisterForm-required {
+  color: var(--error);
+}
+
+.RegisterForm-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  color: var(--gray-900);
+  background-color: var(--white);
+  transition: all var(--transition-base);
+}
+
+.RegisterForm-input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.RegisterForm-input::placeholder {
+  color: var(--gray-400);
+}
+
+.RegisterForm-input-error {
+  border-color: var(--error);
+}
+
+.RegisterForm-input-error:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.RegisterForm-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.RegisterForm-password-wrapper .RegisterForm-input {
+  padding-right: 48px;
+}
+
+.RegisterForm-password-toggle {
+  position: absolute;
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  color: var(--gray-500);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-base);
+}
+
+.RegisterForm-password-toggle:hover {
+  color: var(--gray-700);
+  background-color: var(--gray-100);
+}
+
+.RegisterForm-password-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-green);
+}
+
+.RegisterForm-password-hint {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background-color: var(--gray-50);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.85rem;
+  color: var(--gray-600);
+}
+
+.RegisterForm-password-hint span {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+}
+
+.RegisterForm-password-hint ul {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+  list-style: disc;
+}
+
+.RegisterForm-password-hint li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.RegisterForm-field-error {
+  font-size: 0.85rem;
+  color: var(--error);
+  margin-top: var(--spacing-xs);
+}
+
+.RegisterForm-role-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.RegisterForm-role-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  background-color: var(--white);
+}
+
+.RegisterForm-role-option:hover {
+  border-color: var(--primary-green);
+  background-color: var(--gray-50);
+}
+
+.RegisterForm-role-input {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-green);
+}
+
+.RegisterForm-role-input:checked + .RegisterForm-role-content {
+  color: var(--primary-green);
+}
+
+.RegisterForm-role-option-selected {
+  border-color: var(--primary-green);
+  background-color: rgba(76, 175, 80, 0.05);
+}
+
+.RegisterForm-role-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.RegisterForm-role-title {
+  font-weight: 600;
+  color: var(--gray-900);
+  font-size: 0.95rem;
+}
+
+.RegisterForm-role-description {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+}
+
+.RegisterForm-submit {
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-sm);
+}
+
+.RegisterForm-submit:hover:not(:disabled) {
+  background-color: var(--primary-green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.RegisterForm-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.RegisterForm-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.RegisterForm-switch {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.RegisterForm-link {
+  background: none;
+  border: none;
+  color: var(--primary-green);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-base);
+  padding: 0;
+}
+
+.RegisterForm-link:hover {
+  color: var(--primary-green-dark);
+  text-decoration: underline;
+}
+
+.RegisterForm-link-primary {
+  margin-left: var(--spacing-xs);
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .RegisterForm-title {
+    font-size: 1.5rem;
+  }
+
+  .RegisterForm-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .RegisterForm-role-group {
+    grid-template-columns: 1fr;
+  }
+}
+

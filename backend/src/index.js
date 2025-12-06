@@ -40,11 +40,12 @@ app.get('/', (req, res) => {
   res.status(200).json({
     message: 'API Praxeo Backend',
     version: '1.0.0',
-    endpoints: {
+      endpoints: {
       health: '/health',
       auth: '/api/auth',
       products: '/api/products',
-      reservations: '/api/reservations'
+      reservations: '/api/reservations',
+      reviews: '/api/reviews'
     }
   });
 });
@@ -53,11 +54,13 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/auth.routes');
 const productRoutes = require('./routes/product.routes');
 const reservationRoutes = require('./routes/reservation.routes');
+const reviewRoutes = require('./routes/review.routes');
 
 // Registrar rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Middleware de tratamento de rotas não encontradas
 app.use((req, res) => {
