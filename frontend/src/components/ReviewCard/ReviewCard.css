@@ -1,0 +1,110 @@
+.ReviewCard {
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  transition: box-shadow var(--transition-base);
+}
+
+.ReviewCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.ReviewCard-header {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.ReviewCard-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ReviewCard-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.ReviewCard-user-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.ReviewCard-verified {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.ReviewCard-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.ReviewCard-star {
+  color: var(--gray-300);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.ReviewCard-star-full {
+  color: #FFB800;
+}
+
+.ReviewCard-star-half {
+  color: #FFB800;
+  opacity: 0.6;
+}
+
+.ReviewCard-star-empty {
+  color: var(--gray-300);
+}
+
+.ReviewCard-rating-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-left: var(--spacing-xs);
+}
+
+.ReviewCard-date {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+}
+
+.ReviewCard-content {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-200);
+}
+
+.ReviewCard-text {
+  color: var(--gray-700);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+

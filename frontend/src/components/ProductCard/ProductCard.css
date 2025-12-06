@@ -1,0 +1,142 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.ProductCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ProductCard-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 66.67%; /* 3:2 aspect ratio */
+  overflow: hidden;
+  background-color: var(--gray-200);
+}
+
+.ProductCard-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.ProductCard:hover .ProductCard-image {
+  transform: scale(1.05);
+}
+
+.ProductCard-badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
+.ProductCard-content {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ProductCard-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ProductCard-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.ProductCard-location {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--gray-600);
+  font-size: 0.9rem;
+}
+
+.ProductCard-location svg {
+  flex-shrink: 0;
+}
+
+.ProductCard-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.9rem;
+}
+
+.ProductCard-star {
+  color: var(--gray-300);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.ProductCard-star-full {
+  color: #FFB800;
+}
+
+.ProductCard-star-half {
+  color: #FFB800;
+  opacity: 0.6;
+}
+
+.ProductCard-rating-value {
+  color: var(--gray-700);
+  font-weight: 500;
+  font-size: 0.85rem;
+  margin-left: var(--spacing-xs);
+}
+
+.ProductCard-price {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+}
+
+.ProductCard-price-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.ProductCard-price-period {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+

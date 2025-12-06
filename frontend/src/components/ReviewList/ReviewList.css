@@ -1,0 +1,72 @@
+.ReviewList {
+  margin-top: var(--spacing-2xl);
+}
+
+.ReviewList-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.ReviewList-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.ReviewList-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.ReviewList-empty {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--gray-600);
+  background-color: var(--gray-50);
+  border-radius: var(--border-radius-lg);
+}
+
+.ReviewList-empty p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.ReviewList-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+.ReviewList-pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius-md);
+  color: var(--gray-700);
+  transition: all var(--transition-base);
+}
+
+.ReviewList-pagination-button:hover:not(:disabled) {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: var(--white);
+}
+
+.ReviewList-pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ReviewList-pagination-info {
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
