@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS products (
     description TEXT,
     category VARCHAR(100) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
+    monthly_price DECIMAL(10, 2) NULL,
     condition product_condition NOT NULL DEFAULT 'good',
     location GEOMETRY(POINT, 4326),
     address VARCHAR(255),
@@ -112,6 +113,7 @@ CREATE TABLE IF NOT EXISTS products (
     -- Constraints
     CONSTRAINT products_title_length CHECK (char_length(title) >= 3 AND char_length(title) <= 200),
     CONSTRAINT products_price_positive CHECK (price > 0),
+    CONSTRAINT products_monthly_price_positive CHECK (monthly_price IS NULL OR monthly_price > 0),
     CONSTRAINT products_cep_length CHECK (cep IS NULL OR (char_length(cep) >= 8 AND char_length(cep) <= 10))
 );
 
@@ -123,6 +125,7 @@ COMMENT ON COLUMN products.title IS 'Título/nome do equipamento (3-200 caracter
 COMMENT ON COLUMN products.description IS 'Descrição detalhada do equipamento';
 COMMENT ON COLUMN products.category IS 'Categoria do equipamento (ex: Mobilidade, Respiratório)';
 COMMENT ON COLUMN products.price IS 'Preço diário de aluguel (R$)';
+COMMENT ON COLUMN products.monthly_price IS 'Preço mensal de aluguel (R$) - opcional, usado para períodos >= 30 dias. Deve ser menor que 30 × preço diário para oferecer desconto.';
 COMMENT ON COLUMN products.condition IS 'Condição do equipamento: new, like_new, good, fair, poor';
 COMMENT ON COLUMN products.location IS 'Coordenadas geográficas (PostGIS Point) - longitude, latitude';
 COMMENT ON COLUMN products.address IS 'Endereço completo do equipamento';

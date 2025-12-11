@@ -1,0 +1,309 @@
+.ImageUploader {
+  width: 100%;
+}
+
+.ImageUploader-dropzone {
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  background-color: var(--gray-50);
+  position: relative;
+}
+
+.ImageUploader-dropzone:hover:not(.ImageUploader-dropzone-disabled) {
+  border-color: var(--primary-green);
+  background-color: var(--gray-100);
+}
+
+.ImageUploader-dropzone-active {
+  border-color: var(--primary-green);
+  background-color: var(--primary-green-light);
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.ImageUploader-dropzone-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ImageUploader-input {
+  display: none;
+}
+
+.ImageUploader-dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.ImageUploader-icon {
+  color: var(--gray-400);
+  transition: color var(--transition-base);
+}
+
+.ImageUploader-dropzone:hover:not(.ImageUploader-dropzone-disabled) .ImageUploader-icon {
+  color: var(--primary-green);
+}
+
+.ImageUploader-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin: 0;
+}
+
+.ImageUploader-hint {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.ImageUploader-errors {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: #FEE;
+  border: 1px solid var(--error);
+  border-radius: var(--border-radius-md);
+}
+
+.ImageUploader-error {
+  color: var(--error);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.ImageUploader-error:last-child {
+  margin-bottom: 0;
+}
+
+.ImageUploader-preview {
+  margin-top: var(--spacing-lg);
+}
+
+.ImageUploader-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.ImageUploader-preview-count {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.ImageUploader-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.ImageUploader-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: none;
+}
+
+.ImageUploader-button-primary {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.ImageUploader-button-primary:hover:not(:disabled) {
+  background-color: var(--primary-green-dark);
+}
+
+.ImageUploader-button-secondary {
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.ImageUploader-button-secondary:hover:not(:disabled) {
+  background-color: var(--gray-300);
+}
+
+.ImageUploader-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ImageUploader-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.ImageUploader-item {
+  position: relative;
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.ImageUploader-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.ImageUploader-item-preview {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Aspect ratio 1:1 */
+  background-color: var(--gray-100);
+  overflow: hidden;
+}
+
+.ImageUploader-item-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ImageUploader-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  color: var(--white);
+  font-size: 0.85rem;
+}
+
+.ImageUploader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ImageUploader-item-badge {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.ImageUploader-item-badge-success {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.ImageUploader-item-badge-error {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.ImageUploader-item-info {
+  padding: var(--spacing-sm);
+}
+
+.ImageUploader-item-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-900);
+  margin: 0 0 var(--spacing-xs) 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ImageUploader-item-size {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.ImageUploader-item-error {
+  font-size: 0.75rem;
+  color: var(--error);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+.ImageUploader-item-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-top: 1px solid var(--gray-200);
+}
+
+.ImageUploader-item-button {
+  flex: 1;
+  padding: var(--spacing-xs);
+  background-color: var(--gray-100);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: var(--gray-700);
+}
+
+.ImageUploader-item-button:hover {
+  background-color: var(--gray-200);
+}
+
+.ImageUploader-item-button-remove {
+  color: var(--error);
+}
+
+.ImageUploader-item-button-remove:hover {
+  background-color: #FEE;
+}
+
+@media (max-width: 768px) {
+  .ImageUploader-dropzone {
+    padding: var(--spacing-lg);
+  }
+
+  .ImageUploader-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .ImageUploader-preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ImageUploader-actions {
+    width: 100%;
+  }
+
+  .ImageUploader-button {
+    flex: 1;
+  }
+}
+

@@ -8,6 +8,9 @@ const { authenticate, optionalAuthenticate } = require('../middleware/auth.middl
  * Base: /api/reservations
  */
 
+// GET /api/reservations/estimate - Calcular preço estimado (público)
+router.get('/estimate', ReservationController.estimateReservationPrice);
+
 // POST /api/reservations - Criar reserva (autenticado)
 router.post('/', authenticate, ReservationController.createReservation);
 

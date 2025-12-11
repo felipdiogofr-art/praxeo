@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from '../../contexts/LocationContext';
+import LocationInput from '../LocationInput/LocationInput';
 import './HeroSection.css';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchLocation, setSearchLocation] = useState('');
+  const { location } = useLocation();
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim() || searchLocation.trim()) {
-      navigate(`/busca?q=${encodeURIComponent(searchQuery)}&location=${encodeURIComponent(searchLocation)}`);
+    const locationParam = location?.cep || location?.address || '';
+    if (searchQuery.trim() || locationParam) {
+      navigate(`/busca?q=${encodeURIComponent(searchQuery)}&location=${encodeURIComponent(locationParam)}`);
     }
   };
 
@@ -42,17 +45,11 @@ const HeroSection = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <div className="HeroSection-search-group">
-                <label htmlFor="hero-location" className="sr-only">
-                  Localização
-                </label>
-                <input
-                  id="hero-location"
-                  type="text"
-                  className="HeroSection-search-input HeroSection-search-location"
-                  placeholder="CEP ou Cidade"
-                  value={searchLocation}
-                  onChange={(e) => setSearchLocation(e.target.value)}
+              <div className="HeroSection-search-group HeroSection-search-location-wrapper">
+                <LocationInput 
+                  placeholder="CEP (ex: 01310-100)"
+                  showGPSButton={false}
+                  initialValue={location?.cep || ''}
                 />
               </div>
               <button type="submit" className="HeroSection-search-button">

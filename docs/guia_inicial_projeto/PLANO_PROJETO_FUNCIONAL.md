@@ -189,29 +189,35 @@
 **Objetivo**: Busca funcional com filtros de localização
 
 #### 4.1 Componente de Busca
-- [ ] **LocationInput** (`frontend/src/components/LocationInput/LocationInput.js`)
+- [X] **LocationInput** (`frontend/src/components/LocationInput/LocationInput.js`)
   - Input de CEP com validação
   - Integração com API de CEP (ViaCEP)
   - Auto-preenchimento de endereço
   - Opção de usar GPS
+  - Integrado na página Search e HeroSection
   
-- [ ] **SearchFilters** (`frontend/src/components/SearchFilters/SearchFilters.js`)
+- [X] **SearchFilters** (`frontend/src/components/SearchFilters/SearchFilters.js`)
   - Filtros: categoria, preço, distância, avaliação
   - Integração com ProductService
+  - Componente completo com CSS e responsividade
 
 #### 4.2 Melhorar Página de Busca
-- [ ] Integrar LocationInput
-- [ ] Exibir resultados com distância calculada
-- [ ] Ordenação: distância, preço, avaliação
-- [ ] Loading states e tratamento de erros
+- [X] Integrar LocationInput
+- [X] Exibir resultados com distância calculada
+- [X] Ordenação: distância, preço, avaliação
+- [X] Loading states e tratamento de erros
+  - Skeleton loader durante carregamento
+  - Tratamento de erros específico por tipo
+  - Mensagens de erro claras e úteis
 
 #### 4.3 Backend - Endpoint de Busca
-- [ ] Melhorar GET `/api/products`
-  - Query params: lat, lng, radius, category, minPrice, maxPrice
-  - Retornar distância calculada
-  - Ordenação por distância
+- [X] Melhorar GET `/api/products`
+  - Query params: lat, lng, radius, category, minPrice, maxPrice, availability, search
+  - Retornar distância calculada (em km, com 2 casas decimais)
+  - Ordenação por distância (com fallback para rating e preço)
+  - Validação de coordenadas geográficas
+  - Tratamento de produtos sem localização
 
-**Tempo Estimado**: 2-3 dias
 **Dependências**: FASE 2 completa
 
 ---
@@ -220,32 +226,37 @@
 **Objetivo**: Usuários podem reservar equipamentos
 
 #### 5.1 Componentes de Reserva
-- [ ] **AvailabilityCalendar** (`frontend/src/components/Reservation/AvailabilityCalendar.js`)
+- [X] **AvailabilityCalendar** (`frontend/src/components/Reservation/AvailabilityCalendar.js`)
   - Calendário interativo
   - Marcar datas disponíveis/indisponíveis
   - Seleção de período (data início/fim)
   
-- [ ] **ReservationBox** (`frontend/src/components/Reservation/ReservationBox.js`)
+- [X] **ReservationBox** (`frontend/src/components/Reservation/ReservationBox.js`)
   - Exibir no ProductDetail
   - Cálculo de preço total
   - Exibir taxa de serviço e caução
   - Botão "Reservar Agora"
 
 #### 5.2 Página de Checkout
-- [ ] **CheckoutPage** (`frontend/src/pages/Checkout/Checkout.js`)
-  - Resumo da reserva
-  - Formulário de dados de entrega
-  - Integração futura com gateway de pagamento
-  - Confirmação de reserva
+- [X] **CheckoutPage** (`frontend/src/pages/Checkout/Checkout.js`)
+  - Resumo da reserva (produto, datas, preços detalhados)
+  - Formulário de dados de entrega (CEP, endereço, cidade, estado, telefone, observações)
+  - Validação de formulário com React Hook Form
+  - Cálculo automático de valores (aluguel, taxa de serviço, caução)
+  - Integração com serviço de reservas
+  - Tratamento de erros e loading states
+  - Redirecionamento para página de confirmação
+  - Página de confirmação (`Confirmation.js`) com detalhes da reserva
+  - Integração futura com gateway de pagamento (preparado)
 
 #### 5.3 Backend - Lógica de Reservas
-- [ ] Validar disponibilidade de datas
-- [ ] Calcular preço total (dias × preço diário)
-- [ ] Calcular taxa de serviço
-- [ ] Criar registro de reserva
-- [ ] Atualizar disponibilidade do produto
+- [X] Validar disponibilidade de datas
+- [X] Calcular preço total (dias × preço diário)
+- [X] Calcular taxa de serviço (15% configurável via SERVICE_FEE_RATE)
+- [X] Criar registro de reserva
+- [X] Gerenciar disponibilidade do produto (baseado em reservas existentes)
 
-**Tempo Estimado**: 3-4 dias
+
 **Dependências**: FASE 3 completa
 
 ---
@@ -254,26 +265,49 @@
 **Objetivo**: Proprietários podem gerenciar seus produtos
 
 #### 6.1 Onboarding de Publicação
-- [ ] **PublishProductWizard** (`frontend/src/components/PublishProduct/PublishProductWizard.js`)
+- [X] **PublishProductWizard** (`frontend/src/components/PublishProduct/PublishProductWizard.js`)
   - Passo 1: Categoria e informações básicas
   - Passo 2: Preço e localização
   - Passo 3: Imagens e descrição
   - Passo 4: Preview e publicação
+  - Integração com ProductService
+  - Integração com LocationInput
+  - Validação de formulários
+  - Preview completo antes de publicar
 
 #### 6.2 Dashboard do Proprietário
-- [ ] **OwnerDashboard** (`frontend/src/pages/OwnerDashboard/OwnerDashboard.js`)
+- [X] **OwnerDashboard** (`frontend/src/pages/OwnerDashboard/OwnerDashboard.js`)
   - Lista de produtos publicados
-  - Estatísticas (visualizações, reservas)
-  - Reservas pendentes
-  - Ganhos
+  - Estatísticas (total de produtos, produtos ativos, total de reservas, reservas pendentes)
+  - Reservas pendentes com ações de confirmar/cancelar
+  - Cálculo de ganhos (totais e do mês atual)
+  - Cards de estatísticas visuais
+  - Ações rápidas (editar/deletar produtos)
+  - Botão para publicar novo produto
+  - Página de publicação (`PublishProductPage.js`) integrada
+  - Melhorias no backend: filtro userId para buscar produtos do usuário
 
 #### 6.3 Gestão de Produtos
-- [ ] Editar produto
-- [ ] Pausar/Ativar produto
-- [ ] Deletar produto
-- [ ] Gerenciar disponibilidade (calendário)
+- [X] Editar produto
+  - Página completa de edição (`EditProductPage`)
+  - Reutilização de campos do wizard de publicação
+  - Validação de permissões (apenas proprietário)
+  - Integração com `LocationInput` e `AvailabilityManager`
+- [X] Pausar/Ativar produto
+  - Toggle de disponibilidade no dashboard
+  - Atualização via API `updateProduct`
+  - Feedback visual imediato
+- [X] Deletar produto
+  - Confirmação antes de deletar
+  - Melhor tratamento de erros
+  - Recarregamento automático do dashboard após exclusão
+- [X] Gerenciar disponibilidade (calendário)
+  - Componente `AvailabilityManager` com calendário visual
+  - Exibição de reservas confirmadas/ativas/pendentes
+  - Lista de próximas reservas
+  - Integração na página de edição de produto
 
-**Tempo Estimado**: 3-4 dias
+**Tempo Estimado**: 
 **Dependências**: FASE 3 e FASE 5 completas
 
 ---
@@ -282,21 +316,30 @@
 **Objetivo**: Usuários podem avaliar produtos e proprietários
 
 #### 7.1 Componentes
-- [ ] **ReviewForm** (`frontend/src/components/Review/ReviewForm.js`)
+- [X] **ReviewForm** (`frontend/src/components/Review/ReviewForm.js`)
   - Formulário de avaliação (após reserva concluída)
-  - Rating com estrelas
-  - Campo de comentário
+  - Rating interativo com estrelas (1 a 5)
+  - Campo de comentário (opcional, até 1000 caracteres)
+  - Validação com React Hook Form
+  - Integração com serviço de reviews
+  - Tratamento de erros e loading states
   
-- [ ] Melhorar **ReviewCard** e **ReviewList**
+- [X] Melhorar **ReviewCard** e **ReviewList**
   - Carregar avaliações reais da API
-  - Paginação
+  - Compatibilidade com dados mock e API
+  - Paginação no backend e frontend
+  - Exibição de rating médio
+  - Loading e error states
+  - Suporte a avaliações verificadas (com reservationId)
 
 #### 7.2 Backend
-- [ ] Endpoint POST `/api/reviews`
-- [ ] Validar que usuário fez reserva antes de avaliar
-- [ ] Calcular rating médio do produto
+- [X] Endpoint POST `/api/reviews` (já implementado)
+- [X] Endpoint GET `/api/reviews/product/:productId` com paginação (já implementado)
+- [X] Validar que usuário não pode avaliar o mesmo produto duas vezes (já implementado)
+- [X] Calcular rating médio do produto (já implementado)
+- [X] Serviço frontend completo (`review.service.js`)
 
-**Tempo Estimado**: 1-2 dias
+**Tempo Estimado**: 
 **Dependências**: FASE 5 completa
 
 ---
@@ -317,7 +360,6 @@
   - Upload múltiplo
   - Validação de tipo e tamanho
 
-**Tempo Estimado**: 2 dias
 **Dependências**: FASE 6 completa
 
 ---

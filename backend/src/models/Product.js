@@ -55,7 +55,22 @@ const Product = sequelize.define('Product', {
         args: [0.01],
         msg: 'O preço deve ser maior que zero'
       }
-    }
+    },
+    comment: 'Preço diário de aluguel (R$)'
+  },
+  monthlyPrice: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: true,
+    validate: {
+      isDecimal: {
+        msg: 'O preço mensal deve ser um número decimal'
+      },
+      min: {
+        args: [0.01],
+        msg: 'O preço mensal deve ser maior que zero'
+      }
+    },
+    comment: 'Preço mensal de aluguel (R$) - opcional, usado para períodos >= 30 dias'
   },
   condition: {
     type: DataTypes.ENUM('new', 'like_new', 'good', 'fair', 'poor'),

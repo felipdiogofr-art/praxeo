@@ -1,0 +1,220 @@
+.ReviewForm {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.ReviewForm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.ReviewForm-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.ReviewForm-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.ReviewForm-close:hover {
+  background: #f0f0f0;
+  color: #1a1a1a;
+}
+
+.ReviewForm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ReviewForm-error {
+  padding: 1rem;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+  font-size: 0.875rem;
+}
+
+.ReviewForm-rating-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ReviewForm-label {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 0.9375rem;
+}
+
+.ReviewForm-required {
+  color: #dc3545;
+}
+
+.ReviewForm-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ReviewForm-star {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.2s;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.ReviewForm-star:hover {
+  transform: scale(1.1);
+}
+
+.ReviewForm-star-active {
+  color: #FFB800;
+}
+
+.ReviewForm-rating-text {
+  font-size: 0.9375rem;
+  color: #666;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.ReviewForm-hint {
+  font-size: 0.875rem;
+  color: #999;
+  font-style: italic;
+}
+
+.ReviewForm-comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ReviewForm-textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ReviewForm-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.ReviewForm-char-count {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: right;
+}
+
+.ReviewForm-field-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+}
+
+.ReviewForm-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.ReviewForm-button-primary,
+.ReviewForm-button-secondary {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ReviewForm-button-primary {
+  background: #007bff;
+  color: white;
+}
+
+.ReviewForm-button-primary:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.ReviewForm-button-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ReviewForm-button-secondary {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.ReviewForm-button-secondary:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #bbb;
+}
+
+.ReviewForm-button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .ReviewForm {
+    padding: 1.5rem;
+  }
+
+  .ReviewForm-star {
+    font-size: 1.75rem;
+  }
+
+  .ReviewForm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .ReviewForm-button-primary,
+  .ReviewForm-button-secondary {
+    width: 100%;
+  }
+}
+

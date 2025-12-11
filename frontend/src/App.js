@@ -7,6 +7,11 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home/Home';
 import Search from './pages/Search/Search';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
+import Checkout from './pages/Checkout/Checkout';
+import Confirmation from './pages/Checkout/Confirmation';
+import OwnerDashboard from './pages/OwnerDashboard/OwnerDashboard';
+import PublishProductPage from './pages/PublishProduct/PublishProductPage';
+import EditProductPage from './pages/EditProduct/EditProductPage';
 import './App.css';
 
 function App() {
@@ -21,24 +26,25 @@ function App() {
               <Route path="/busca" element={<Search />} />
               <Route path="/produto/:id" element={<ProductDetail />} />
               
-              {/* Rotas protegidas - Exemplos de uso do PrivateRoute */}
-              {/* 
+              {/* Rotas protegidas */}
               <Route 
-                path="/perfil" 
+                path="/checkout" 
                 element={
                   <PrivateRoute>
-                    <ProfilePage />
+                    <Checkout />
                   </PrivateRoute>
                 } 
               />
               <Route 
-                path="/reservas" 
+                path="/reserva/confirmacao" 
                 element={
                   <PrivateRoute>
-                    <ReservationsPage />
+                    <Confirmation />
                   </PrivateRoute>
                 } 
               />
+              
+              {/* Rotas protegidas - Dashboard do Proprietário */}
               <Route 
                 path="/dashboard" 
                 element={
@@ -55,7 +61,14 @@ function App() {
                   </PrivateRoute>
                 } 
               />
-              */}
+              <Route 
+                path="/produto/:id/editar" 
+                element={
+                  <PrivateRoute requiredRole="owner">
+                    <EditProductPage />
+                  </PrivateRoute>
+                } 
+              />
             </Routes>
           </Layout>
         </Router>

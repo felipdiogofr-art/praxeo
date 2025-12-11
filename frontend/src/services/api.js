@@ -92,11 +92,17 @@ api.interceptors.response.use(
       });
     } else if (error.request) {
       // A requisição foi feita mas não houve resposta do servidor
-      console.error('Erro de conexão:', 'Não foi possível conectar ao servidor. Verifique sua conexão com a internet.');
+      const errorMessage = process.env.NODE_ENV === 'development'
+        ? `Não foi possível conectar ao servidor em ${API_BASE_URL}. Verifique se o backend está rodando na porta correta.`
+        : 'Não foi possível conectar ao servidor. Verifique sua conexão com a internet.';
+      
+      console.error('Erro de conexão:', errorMessage);
+      console.error('URL tentada:', error.config?.url || 'N/A');
+      console.error('Base URL:', API_BASE_URL);
       
       return Promise.reject({
         status: 0,
-        message: 'Não foi possível conectar ao servidor. Verifique sua conexão com a internet.',
+        message: errorMessage,
         networkError: true,
       });
     } else {

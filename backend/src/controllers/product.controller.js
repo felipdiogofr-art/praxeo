@@ -19,7 +19,8 @@ class ProductController {
         minPrice: req.query.minPrice,
         maxPrice: req.query.maxPrice,
         availability: req.query.availability,
-        search: req.query.search
+        search: req.query.search,
+        userId: req.query.userId || req.query.ownerId // Filtrar por proprietário
       };
 
       const pagination = {
@@ -35,6 +36,21 @@ class ProductController {
       });
     } catch (error) {
       console.error('Erro ao listar produtos:', error);
+
+      // Erros de validação retornam 400
+      if (
+        error.message.includes('deve ser') ||
+        error.message.includes('inválido') ||
+        error.message.includes('obrigatório') ||
+        error.message.includes('Latitude') ||
+        error.message.includes('Longitude') ||
+        error.message.includes('Raio')
+      ) {
+        return res.status(400).json({
+          error: 'Erro de validação',
+          message: error.message
+        });
+      }
 
       return res.status(500).json({
         error: 'Erro ao listar produtos',
@@ -84,6 +100,19 @@ class ProductController {
    */
   static async createProduct(req, res) {
     try {
+      // Log para debug (apenas em desenvolvimento)
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('📦 Dados recebidos para criar produto:', {
+          title: req.body.title,
+          category: req.body.category,
+          price: req.body.price,
+          images: req.body.images,
+          imagesType: typeof req.body.images,
+          imagesIsArray: Array.isArray(req.body.images),
+          imagesLength: Array.isArray(req.body.images) ? req.body.images.length : 'N/A'
+        });
+      }
+
       const product = await ProductService.createProduct(req.body, req.userId);
 
       return res.status(201).json({

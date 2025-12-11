@@ -33,7 +33,8 @@ export const login = async (email, password) => {
       password,
     });
 
-    const { token, user } = response.data;
+    // O backend retorna { message, data: { user, token } }
+    const { token, user } = response.data.data || response.data;
 
     // Armazenar token e dados do usuário no localStorage
     setToken(token);
@@ -80,7 +81,8 @@ export const register = async (userData) => {
   try {
     const response = await api.post('/auth/register', userData);
 
-    const { token, user } = response.data;
+    // O backend retorna { message, data: { user, token } }
+    const { token, user } = response.data.data || response.data;
 
     // Armazenar token e dados do usuário no localStorage
     setToken(token);
@@ -146,7 +148,8 @@ export const getCurrentUser = async (forceRefresh = false) => {
   try {
     // Buscar dados atualizados do servidor
     const response = await api.get('/auth/me');
-    const user = response.data.user || response.data;
+    // O backend retorna { message, data: user }
+    const user = response.data.data || response.data.user || response.data;
 
     // Atualizar dados no localStorage
     setUser(user);

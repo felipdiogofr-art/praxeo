@@ -8,12 +8,25 @@ const compression = require('compression');
 const app = express();
 
 // Configuração de porta
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middlewares de segurança e performance
-app.use(helmet());
+// Configurar Helmet para permitir requisições do frontend
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(compression());
-app.use(cors());
+
+// Configuração do CORS
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 
 // Middleware de logging
 if (process.env.NODE_ENV !== 'production') {
@@ -25,6 +38,9 @@ if (process.env.NODE_ENV !== 'production') {
 // Middleware para parsing de JSON e URL encoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Servir arquivos estáticos de uploads
+app.use('/uploads', express.static('uploads'));
 
 // Rota de health check
 app.get('/health', (req, res) => {
@@ -45,7 +61,8 @@ app.get('/', (req, res) => {
       auth: '/api/auth',
       products: '/api/products',
       reservations: '/api/reservations',
-      reviews: '/api/reviews'
+      reviews: '/api/reviews',
+      ...(uploadRoutes && { upload: '/api/upload' })
     }
   });
 });
@@ -56,11 +73,34 @@ const productRoutes = require('./routes/product.routes');
 const reservationRoutes = require('./routes/reservation.routes');
 const reviewRoutes = require('./routes/review.routes');
 
+// Importar rotas de upload condicionalmente (só se cloudinary estiver disponível)
+let uploadRoutes;
+try {
+  uploadRoutes = require('./routes/upload.routes');
+} catch (error) {
+  console.warn('⚠️  Rotas de upload não disponíveis:', error.message);
+  console.warn('💡 Execute "npm install" para instalar as dependências do Cloudinary');
+  uploadRoutes = null;
+}
+
 // Registrar rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/reviews', reviewRoutes);
+
+// Registrar rotas de upload apenas se estiverem disponíveis
+if (uploadRoutes) {
+  app.use('/api/upload', uploadRoutes);
+} else {
+  // Criar rota placeholder informando que o upload não está disponível
+  app.use('/api/upload', (req, res) => {
+    res.status(503).json({
+      error: 'Serviço de upload não disponível',
+      message: 'Cloudinary não está configurado. Execute "npm install" para instalar as dependências.'
+    });
+  });
+}
 
 // Middleware de tratamento de rotas não encontradas
 app.use((req, res) => {

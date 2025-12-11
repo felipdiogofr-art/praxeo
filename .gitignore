@@ -46,3 +46,7 @@ Praxeo.tech/docs
 
 # Arquivos de Configuração
 *.env*
+
+# Uploads
+backend/uploads/
+uploads/

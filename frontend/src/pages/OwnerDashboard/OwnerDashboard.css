@@ -1,0 +1,416 @@
+.OwnerDashboard {
+  padding: var(--spacing-xl) 0;
+  min-height: 60vh;
+}
+
+.OwnerDashboard-loading,
+.OwnerDashboard-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.OwnerDashboard-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--gray-200);
+  border-top-color: var(--primary-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-md);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.OwnerDashboard-error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-2xl);
+}
+
+.OwnerDashboard-error-message svg {
+  color: var(--error);
+}
+
+.OwnerDashboard-error-message p {
+  color: var(--gray-700);
+  font-size: 1.1rem;
+}
+
+/* Header */
+.OwnerDashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+.OwnerDashboard-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-xs);
+}
+
+.OwnerDashboard-subtitle {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+}
+
+/* Buttons */
+.OwnerDashboard-button-primary,
+.OwnerDashboard-button-secondary,
+.OwnerDashboard-button-small,
+.OwnerDashboard-button-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  text-decoration: none;
+}
+
+.OwnerDashboard-button-primary {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.OwnerDashboard-button-primary:hover {
+  background-color: var(--primary-green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-button-secondary {
+  background-color: var(--white);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+
+.OwnerDashboard-button-secondary:hover {
+  background-color: var(--gray-50);
+  border-color: var(--gray-400);
+}
+
+.OwnerDashboard-button-small {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.875rem;
+}
+
+.OwnerDashboard-button-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.OwnerDashboard-button-warning:hover {
+  background-color: #e0a800;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-button-success {
+  background-color: #28a745;
+  color: var(--white);
+}
+
+.OwnerDashboard-button-success:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-button-danger {
+  background-color: #dc3545;
+  color: var(--white);
+}
+
+.OwnerDashboard-button-danger:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-button-link {
+  background: none;
+  color: var(--primary-blue);
+  padding: 0;
+  font-weight: 500;
+}
+
+.OwnerDashboard-button-link:hover {
+  color: var(--primary-blue-dark);
+  text-decoration: underline;
+}
+
+/* Statistics */
+.OwnerDashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.OwnerDashboard-stat-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.OwnerDashboard-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.OwnerDashboard-stat-icon-products {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: var(--primary-blue);
+}
+
+.OwnerDashboard-stat-icon-reservations {
+  background-color: rgba(156, 39, 176, 0.1);
+  color: #9c27b0;
+}
+
+.OwnerDashboard-stat-icon-earnings {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--primary-green);
+}
+
+.OwnerDashboard-stat-content {
+  flex: 1;
+}
+
+.OwnerDashboard-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-xs);
+}
+
+.OwnerDashboard-stat-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-xs);
+}
+
+.OwnerDashboard-stat-sublabel {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+/* Sections */
+.OwnerDashboard-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.OwnerDashboard-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.OwnerDashboard-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.OwnerDashboard-badge {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Reservations */
+.OwnerDashboard-reservations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.OwnerDashboard-reservation-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  transition: box-shadow 0.2s ease;
+}
+
+.OwnerDashboard-reservation-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.OwnerDashboard-reservation-info {
+  flex: 1;
+}
+
+.OwnerDashboard-reservation-product {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-sm);
+}
+
+.OwnerDashboard-reservation-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.OwnerDashboard-reservation-details span {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+}
+
+.OwnerDashboard-reservation-price {
+  font-weight: 600;
+  color: var(--primary-green);
+  font-size: 1.125rem;
+}
+
+.OwnerDashboard-reservation-user {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.OwnerDashboard-reservation-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+/* Products */
+.OwnerDashboard-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.OwnerDashboard-product-item {
+  position: relative;
+}
+
+.OwnerDashboard-product-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Empty state */
+.OwnerDashboard-empty {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.OwnerDashboard-empty svg {
+  color: var(--gray-300);
+  margin-bottom: var(--spacing-md);
+}
+
+.OwnerDashboard-empty p {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+  .OwnerDashboard-header {
+    flex-direction: column;
+  }
+
+  .OwnerDashboard-button-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .OwnerDashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .OwnerDashboard-reservation-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .OwnerDashboard-reservation-actions {
+    width: 100%;
+  }
+
+  .OwnerDashboard-reservation-actions button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .OwnerDashboard {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .OwnerDashboard-title {
+    font-size: 2rem;
+  }
+
+  .OwnerDashboard-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .OwnerDashboard-stat-card {
+    padding: var(--spacing-md);
+  }
+
+  .OwnerDashboard-stat-value {
+    font-size: 1.5rem;
+  }
+}
+

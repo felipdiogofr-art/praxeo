@@ -309,6 +309,17 @@
   box-shadow: var(--shadow-md);
 }
 
+.ProductDetail-loading,
+.ProductDetail-error {
+  padding: var(--spacing-2xl);
+  text-align: center;
+  color: var(--gray-700);
+}
+
+.ProductDetail-error {
+  color: var(--error);
+}
+
 /* Responsividade */
 @media (max-width: 968px) {
   .ProductDetail-content {

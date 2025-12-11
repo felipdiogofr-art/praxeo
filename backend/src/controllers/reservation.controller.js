@@ -124,6 +124,52 @@ class ReservationController {
   }
 
   /**
+   * GET /api/reservations/estimate
+   * Calcula o preço estimado de uma reserva sem criá-la (público ou autenticado)
+   */
+  static async estimateReservationPrice(req, res) {
+    try {
+      const { productId, startDate, endDate } = req.query;
+
+      if (!productId || !startDate || !endDate) {
+        return res.status(400).json({
+          error: 'Parâmetros obrigatórios',
+          message: 'productId, startDate e endDate são obrigatórios'
+        });
+      }
+
+      const estimate = await ReservationService.estimateReservationPrice(
+        productId,
+        startDate,
+        endDate
+      );
+
+      return res.status(200).json({
+        message: 'Cálculo de preço realizado com sucesso',
+        data: estimate
+      });
+    } catch (error) {
+      console.error('Erro ao calcular preço estimado:', error);
+
+      if (error.message.includes('não encontrado') || 
+          error.message.includes('inválida') ||
+          error.message.includes('posterior')) {
+        return res.status(400).json({
+          error: 'Erro de validação',
+          message: error.message
+        });
+      }
+
+      return res.status(500).json({
+        error: 'Erro ao calcular preço estimado',
+        message: process.env.NODE_ENV === 'production'
+          ? 'Ocorreu um erro ao processar a requisição'
+          : error.message
+      });
+    }
+  }
+
+  /**
    * PUT /api/reservations/:id/status
    * Atualiza o status de uma reserva (requer autenticação)
    */
